@@ -7,11 +7,54 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>header</header>
-    <main>main</main>
-    <aside class="player1">sidebar 1</aside>
-    <aside class="player2">sidebar2</aside>
-    <footer>footer</footer>
+    <header>
+        <h1>Rock, Paper, Scissors</h1>
+    </header>
+    <main>
+        <section class="game-type-view">
+            <h2>Choose your game!</h2>
+            <button>Classic</button>
+            <ul>
+                <li>Rock > Scissors</li>
+                <li>Paper > Rock</li>
+                <li>Scissors > Paper</li>
+            </ul>
+            <button>Difficult</button>
+            <ul>
+                <li>Rock > Scissors & Lizzard</li>
+                <li>Paper > Rock & Alien</li>
+                <li>Scissors > Paper & Lizzard</li>
+                <li>Lizzard > Paper & Alien</li>
+                <li>Alien > Scissors & Rock</li>
+            </ul>
+        </section>
+        <section class="choose-fighter-view">
+            <h2>Choose your fighter!</h2>
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+            <button>Lizzard</button>
+            <button>Alien</button>
+        </section>
+        <section class="end-round-view">
+            <h2>... won this round!</h2>
+            <div>Human choice...</div>
+            <div>Computer choice...</div>
+        </section>
+    </main>
+    <aside class="player1">
+        <p>Human</p>
+        <p>Wins: 0</p>
+        <button>Change game?</button>
+    </aside>
+    <aside class="player2">
+        <p>Computer</p>
+        <p>Wins: 0</p>
+    </aside>
+    <footer>
+        <p><small><a href="https://turing.edu/" target="_blank">Turing School</a> Project. Coded by <a
+                    href="https://github.com/je-jo" target="_blank">Jelena Jovičić</a>, 2024.</small></p>
+    </footer>
     <script src="main.js"></script>
 </body>
 </html>
