@@ -13,43 +13,43 @@
     <main>
         <section class="game-type-view">
             <h2>Choose your game!</h2>
-            <button>Classic</button>
+            <button class="btn-type" value="classic">Classic</button>
             <ul>
                 <li>Rock > Scissors</li>
                 <li>Paper > Rock</li>
                 <li>Scissors > Paper</li>
             </ul>
-            <button>Difficult</button>
+            <button class="btn-type" value="difficult">Difficult</button>
             <ul>
-                <li>Rock > Scissors & Lizzard</li>
+                <li>Rock > Scissors & Lizard</li>
                 <li>Paper > Rock & Alien</li>
-                <li>Scissors > Paper & Lizzard</li>
-                <li>Lizzard > Paper & Alien</li>
+                <li>Scissors > Paper & Lizard</li>
+                <li>Lizard > Paper & Alien</li>
                 <li>Alien > Scissors & Rock</li>
             </ul>
         </section>
         <section class="choose-fighter-view">
             <h2>Choose your fighter!</h2>
-            <button>Rock</button>
-            <button>Paper</button>
-            <button>Scissors</button>
-            <button>Lizzard</button>
-            <button>Alien</button>
+            <button class="btn-fighter" value="rock">Rock</button>
+            <button class="btn-fighter" value="paper">Paper</button>
+            <button class="btn-fighter" value="scissors">Scissors</button>
+            <button class="btn-fighter btn-fighter-diff" value="lizard">Lizard</button>
+            <button class="btn-fighter btn-fighter-diff" value="alien">Alien</button>
         </section>
         <section class="end-round-view">
-            <h2>... won this round!</h2>
-            <div>Human choice...</div>
-            <div>Computer choice...</div>
+            <h2 class="end-round-header"></h2>
+            <div class="player-1-chosen-fighter"></div>
+            <div class="player-2-chosen-fighter"></div>
         </section>
     </main>
     <aside class="player1">
         <p>Human</p>
-        <p>Wins: 0</p>
-        <button>Change game?</button>
+        <p>Wins: <span class="p1wins">0</span></p>
+        <button class="btn-change hidden">Change game?</button>
     </aside>
     <aside class="player2">
         <p>Computer</p>
-        <p>Wins: 0</p>
+        <p>Wins: <span class="p2wins">0</span></p>
     </aside>
     <footer>
         <p><small><a href="https://turing.edu/" target="_blank">Turing School</a> Project. Coded by <a

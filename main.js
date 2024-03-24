@@ -3,7 +3,7 @@ let game = {};
 function createGame() {
     game.player1 = createPlayer("Human", "🤗");
     game.player2 = createPlayer("Computer", "💻");
-    game.gameType = "difficult";
+    game.gameType = null;
     game.currentMessage = null;
     return game;
 }
@@ -30,8 +30,8 @@ function getRandomFighter() {
     }
 }
 
-function takeTurn() {
-    game.player1.currentFighter = getRandomFighter();
+function takeTurn(chosenFighter) {
+    game.player1.currentFighter = chosenFighter;
     game.player2.currentFighter = getRandomFighter();
     checkForDraw(game.player1.currentFighter, game.player2.currentFighter);
     console.table(game)
@@ -64,3 +64,80 @@ function checkForWin(p1fighter, p2fighter) {
         game.currentMessage = `${game.player2.name} wins this round!`
     }
 }
+
+// dom manipulation
+
+var viewStart = document.querySelector(".game-type-view");
+var viewGame = document.querySelector(".choose-fighter-view");
+var viewEndRound = document.querySelector(".end-round-view");
+
+var btnChange = document.querySelector(".btn-change");
+var btnsDifficult = document.querySelectorAll(".btn-fighter-diff");
+
+viewStart.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-type")) {
+
+        game.gameType = e.target.value;
+        hide(viewStart);
+        show(viewGame);
+        hide(viewEndRound);
+        show(btnChange);
+    }
+    if (game.gameType === "classic") {
+        btnsDifficult.forEach(btn => hide(btn));
+    }
+    if (game.gameType === "difficult") {
+        btnsDifficult.forEach(btn => show(btn));
+    }
+});
+
+viewGame.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-fighter")) {
+        hide(viewGame);
+        hide(btnChange);
+        takeTurn(e.target.value);
+        renderEndRoundView();
+        show(viewEndRound);
+        setTimeout(() => {
+            hide(viewEndRound);
+            show(viewGame);
+            show(btnChange);
+        }, 3500);
+    }
+});
+
+btnChange.addEventListener("click", function () {
+    show(viewStart);
+    hide(viewGame);
+    hide(viewEndRound);
+    hide(btnChange)
+})
+
+function hide(elem) {
+    elem.classList.add("hidden");
+}
+
+function show(elem) {
+    elem.classList.remove("hidden");
+}
+
+p1chosenFighter = document.querySelector(".player-1-chosen-fighter");
+p2chosenFighter = document.querySelector(".player-2-chosen-fighter");
+endRoundHeader = document.querySelector(".end-round-header");
+p1wins = document.querySelector(".p1wins");
+p2wins = document.querySelector(".p2wins");
+
+function renderEndRoundView() {
+    endRoundHeader.textContent = game.currentMessage;
+    p1chosenFighter.textContent = game.player1.currentFighter;
+    p2chosenFighter.textContent = game.player2.currentFighter;
+    p1wins.textContent = game.player1.wins;
+    p2wins.textContent = game.player2.wins;
+}
+
+
+
+hide(viewGame);
+hide(viewEndRound);
+hide(btnChange);
+createGame();
