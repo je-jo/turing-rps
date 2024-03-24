@@ -121,3 +121,7 @@ footer {
     grid-area: footer;
     background-color: hotpink;
 }
+
+.hidden {
+  display: none;
+}
