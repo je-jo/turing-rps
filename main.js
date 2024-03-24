@@ -67,51 +67,22 @@ function checkForWin(p1fighter, p2fighter) {
 
 // dom manipulation
 
-var viewStart = document.querySelector(".game-type-view");
-var viewGame = document.querySelector(".choose-fighter-view");
-var viewEndRound = document.querySelector(".end-round-view");
+// 1. variables
 
-var btnChange = document.querySelector(".btn-change");
+var viewStart = document.querySelector(".view-start");
+var viewGame = document.querySelector(".view-game");
+var viewEndRound = document.querySelector(".view-end-round");
+
+var btnBack = document.querySelector(".btn-back");
 var btnsDifficult = document.querySelectorAll(".btn-fighter-diff");
 
-viewStart.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-type")) {
+var p1chosenFighter = document.querySelector(".player-1-chosen-fighter");
+var p2chosenFighter = document.querySelector(".player-2-chosen-fighter");
+var endRoundHeader = document.querySelector(".end-round-header");
+var p1wins = document.querySelector(".p1wins");
+var p2wins = document.querySelector(".p2wins");
 
-        game.gameType = e.target.value;
-        hide(viewStart);
-        show(viewGame);
-        hide(viewEndRound);
-        show(btnChange);
-    }
-    if (game.gameType === "classic") {
-        btnsDifficult.forEach(btn => hide(btn));
-    }
-    if (game.gameType === "difficult") {
-        btnsDifficult.forEach(btn => show(btn));
-    }
-});
-
-viewGame.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-fighter")) {
-        hide(viewGame);
-        hide(btnChange);
-        takeTurn(e.target.value);
-        renderEndRoundView();
-        show(viewEndRound);
-        setTimeout(() => {
-            hide(viewEndRound);
-            show(viewGame);
-            show(btnChange);
-        }, 3500);
-    }
-});
-
-btnChange.addEventListener("click", function () {
-    show(viewStart);
-    hide(viewGame);
-    hide(viewEndRound);
-    hide(btnChange)
-})
+// 2. functions
 
 function hide(elem) {
     elem.classList.add("hidden");
@@ -121,23 +92,69 @@ function show(elem) {
     elem.classList.remove("hidden");
 }
 
-p1chosenFighter = document.querySelector(".player-1-chosen-fighter");
-p2chosenFighter = document.querySelector(".player-2-chosen-fighter");
-endRoundHeader = document.querySelector(".end-round-header");
-p1wins = document.querySelector(".p1wins");
-p2wins = document.querySelector(".p2wins");
+function renderStart() {
+    show(viewStart);
+    hide(viewGame);
+    hide(viewEndRound);
+    hide(btnBack);
+}
 
-function renderEndRoundView() {
+function renderGame() {
+    if (game.gameType === "classic") {
+        btnsDifficult.forEach(btn => hide(btn));
+    }
+    if (game.gameType === "difficult") {
+        btnsDifficult.forEach(btn => show(btn));
+    }
+    hide(viewStart);
+    show(viewGame);
+    hide(viewEndRound);
+    show(btnBack);
+}
+
+function renderEndRound() {
     endRoundHeader.textContent = game.currentMessage;
     p1chosenFighter.textContent = game.player1.currentFighter;
     p2chosenFighter.textContent = game.player2.currentFighter;
-    p1wins.textContent = game.player1.wins;
-    p2wins.textContent = game.player2.wins;
+    hide(viewGame);
+    setTimeout(() => {
+        p1wins.textContent = game.player1.wins;
+        p2wins.textContent = game.player2.wins;
+        show(viewEndRound);
+    }, 200);
+    hide(btnBack);
 }
 
+// 3. event listeners
+
+viewStart.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-type")) {
+        game.gameType = e.target.value;
+        renderGame();
+    }
+});
+
+viewGame.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-fighter")) {
+        takeTurn(e.target.value);
+        renderEndRound();
+        setTimeout(() => {
+            renderGame();
+        }, 3500);
+    }
+});
+
+btnBack.addEventListener("click", renderStart);
+
+window.addEventListener("load", function () {
+    createGame();
+    renderStart();
+});
 
 
-hide(viewGame);
-hide(viewEndRound);
-hide(btnChange);
-createGame();
+
+
+
+
+
+
