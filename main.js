@@ -1,40 +1,39 @@
 let game = {};
 
-function createPlayer(name, token) {
-    return {
-        name: name,
-        token: token,
-        currentWeapon: null,
-        wins: 0
-    }
-}
-
 function createGame() {
     game.player1 = createPlayer("Human", "🤗");
     game.player2 = createPlayer("Computer", "💻");
-    game.gameType = "classic";
+    game.gameType = "difficult";
     game.currentMessage = null;
     return game;
 }
 
-function getRandomIndex(array) {
-    return Math.floor(Math.random() * array.length);
+function createPlayer(name, token) {
+    return {
+        name: name,
+        token: token,
+        currentFighter: null,
+        wins: 0
+    }
+}
+
+function getRandomIndex(max) {
+    return Math.floor(Math.random() * max);
 }
 
 function getRandomFighter() {
-    const weapons = ["rock", "paper", "scissors"];
-    const weaponsDifficult = ["rock", "paper", "scissors", "lizzard", "alien"];
+    const fighters = ["rock", "paper", "scissors", "lizard", "alien"];
     if (game.gameType === "classic") {
-        return weapons[getRandomIndex(weapons)];
+        return fighters[getRandomIndex(3)];
     } else if (game.gameType === "difficult") {
-        return weaponsDifficult[getRandomIndex(weaponsDifficult)];
+        return fighters[getRandomIndex(5)];
     }
 }
 
 function takeTurn() {
-    game.player1.currentWeapon = getRandomFighter();
-    game.player2.currentWeapon = getRandomFighter();
-    checkForDraw(game.player1.currentWeapon, game.player2.currentWeapon);
+    game.player1.currentFighter = getRandomFighter();
+    game.player2.currentFighter = getRandomFighter();
+    checkForDraw(game.player1.currentFighter, game.player2.currentFighter);
     console.table(game)
 }
 
@@ -53,22 +52,15 @@ function checkForWin(p1fighter, p2fighter) {
         (p1fighter === "paper" && p2fighter === "rock") ||
         (p1fighter === "paper" && p2fighter === "alien") ||
         (p1fighter === "scissors" && p2fighter === "paper") ||
-        (p1fighter === "scissors" && p2fighter === "lizzard") ||
-        (p1fighter === "lizzard" && p2fighter === "paper") ||
-        (p1fighter === "lizzard" && p2fighter === "alien") ||
+        (p1fighter === "scissors" && p2fighter === "lizard") ||
+        (p1fighter === "lizard" && p2fighter === "paper") ||
+        (p1fighter === "lizard" && p2fighter === "alien") ||
         (p1fighter === "alien" && p2fighter === "scissors") ||
         (p1fighter === "alien" && p2fighter === "rock")) {
         game.player1.wins += 1;
         game.currentMessage = `${game.player1.name} wins this round!`
     } else {
         game.player2.wins += 1;
-        console.log(`${game.player2.name} wins this round!`)
         game.currentMessage = `${game.player2.name} wins this round!`
     }
 }
-
-// function resetGameBoard() {
-
-// }
-
-createGame();
