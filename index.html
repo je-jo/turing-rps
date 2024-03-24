@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1>Rock, Paper, Scissors</h1>
@@ -13,42 +15,58 @@
     <main>
         <section class="view-start">
             <h2>Choose your game!</h2>
-            <button class="btn-type" value="classic">Classic</button>
-            <ul>
-                <li>Rock > Scissors</li>
-                <li>Paper > Rock</li>
-                <li>Scissors > Paper</li>
-            </ul>
-            <button class="btn-type" value="difficult">Difficult</button>
-            <ul>
-                <li>Rock > Scissors & Lizard</li>
-                <li>Paper > Rock & Alien</li>
-                <li>Scissors > Paper & Lizard</li>
-                <li>Lizard > Paper & Alien</li>
-                <li>Alien > Scissors & Rock</li>
-            </ul>
+            <div class="container-flex">
+                <div>
+                    <button class="btn-type" value="classic">✂ Classic</button>
+                    <ul class="rules">
+                        <li>Rock > Scissors</li>
+                        <li>Paper > Rock</li>
+                        <li>Scissors > Paper</li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="btn-type" value="difficult">👽 Difficult</button>
+                    <ul class="rules">
+                        <li>Rock > Scissors & Lizard</li>
+                        <li>Paper > Rock & Alien</li>
+                        <li>Scissors > Paper & Lizard</li>
+                        <li>Lizard > Paper & Alien</li>
+                        <li>Alien > Scissors & Rock</li>
+                    </ul>
+                </div>
+            </div>
+
         </section>
         <section class="view-game">
             <h2>Choose your fighter!</h2>
-            <button class="btn-fighter" value="rock">Rock</button>
-            <button class="btn-fighter" value="paper">Paper</button>
-            <button class="btn-fighter" value="scissors">Scissors</button>
-            <button class="btn-fighter btn-fighter-diff" value="lizard">Lizard</button>
-            <button class="btn-fighter btn-fighter-diff" value="alien">Alien</button>
+            <div class="container-flex">
+                <button class="box-fighter btn-fighter" value="rock"></button>
+                <button class="box-fighter btn-fighter" value="paper"></button>
+                <button class="box-fighter btn-fighter" value="scissors"></button>
+            </div>
+            <div class="container-flex">
+                <button class="box-fighter btn-fighter btn-fighter-diff" value="lizard"></button>
+                <button class="box-fighter btn-fighter btn-fighter-diff" value="alien"></button>
+            </div>
+            </div>
         </section>
         <section class="view-end-round">
             <h2 class="end-round-header"></h2>
-            <div class="player-1-chosen-fighter"></div>
-            <div class="player-2-chosen-fighter"></div>
+            <div class="container-flex">
+                <div class="box-fighter player-1-chosen-fighter"></div>
+                <div class="box-fighter player-2-chosen-fighter"></div>
+            </div>
         </section>
     </main>
     <aside class="player1">
-        <p>Human</p>
+        <p>👱‍♂️</p>
+        <h3>Human</h3>
         <p>Wins: <span class="p1wins">0</span></p>
         <button class="btn-back hidden">Change game?</button>
     </aside>
     <aside class="player2">
-        <p>Computer</p>
+        <p>💻</p>
+        <h3>Computer</h3>
         <p>Wins: <span class="p2wins">0</span></p>
     </aside>
     <footer>
@@ -57,4 +75,5 @@
     </footer>
     <script src="main.js"></script>
 </body>
+
 </html>

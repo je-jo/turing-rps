@@ -1,7 +1,30 @@
 let game = {};
 
+const fighters = [
+    {
+        value: "rock",
+        imgSrc: ("assets/happy-rocks.png")
+    },
+    {
+        value: "paper",
+        imgSrc: ("assets/happy-paper.png")
+    },
+    {
+        value: "scissors",
+        imgSrc: ("assets/happy-scissors.png")
+    },
+    {
+        value: "lizard",
+        imgSrc: ("assets/lizard.png")
+    },
+    {
+        value: "alien",
+        imgSrc: ("assets/happy-alien.png")
+    },
+]
+
 function createGame() {
-    game.player1 = createPlayer("Human", "🤗");
+    game.player1 = createPlayer("Human", "👱‍♂️");
     game.player2 = createPlayer("Computer", "💻");
     game.gameType = null;
     game.currentMessage = null;
@@ -22,7 +45,6 @@ function getRandomIndex(max) {
 }
 
 function getRandomFighter() {
-    const fighters = ["rock", "paper", "scissors", "lizard", "alien"];
     if (game.gameType === "classic") {
         return fighters[getRandomIndex(3)];
     } else if (game.gameType === "difficult") {
@@ -33,7 +55,7 @@ function getRandomFighter() {
 function takeTurn(chosenFighter) {
     game.player1.currentFighter = chosenFighter;
     game.player2.currentFighter = getRandomFighter();
-    checkForDraw(game.player1.currentFighter, game.player2.currentFighter);
+    checkForDraw(game.player1.currentFighter.value, game.player2.currentFighter.value);
     console.table(game)
 }
 
@@ -58,10 +80,10 @@ function checkForWin(p1fighter, p2fighter) {
         (p1fighter === "alien" && p2fighter === "scissors") ||
         (p1fighter === "alien" && p2fighter === "rock")) {
         game.player1.wins += 1;
-        game.currentMessage = `${game.player1.name} wins this round!`
+        game.currentMessage = `${game.player1.token} ${game.player1.name} wins this round!`
     } else {
         game.player2.wins += 1;
-        game.currentMessage = `${game.player2.name} wins this round!`
+        game.currentMessage = `${game.player2.token} ${game.player2.name} wins this round!`
     }
 }
 
@@ -113,16 +135,22 @@ function renderGame() {
 }
 
 function renderEndRound() {
-    endRoundHeader.textContent = game.currentMessage;
-    p1chosenFighter.textContent = game.player1.currentFighter;
-    p2chosenFighter.textContent = game.player2.currentFighter;
     hide(viewGame);
+    p1chosenFighter.style.backgroundImage = `url(${game.player1.currentFighter.imgSrc})`;
+    endRoundHeader.textContent = "...";
+    p2chosenFighter.style.backgroundImage = "none";
+    p1wins.textContent = "...";
+    p2wins.textContent = "...";
+    show(viewEndRound);
+    hide(btnBack);
     setTimeout(() => {
+        p2chosenFighter.style.backgroundImage = `url(${game.player2.currentFighter.imgSrc})`;
+    }, 200)
+    setTimeout(() => {
+        endRoundHeader.textContent = game.currentMessage;
         p1wins.textContent = game.player1.wins;
         p2wins.textContent = game.player2.wins;
-        show(viewEndRound);
-    }, 200);
-    hide(btnBack);
+    }, 600);
 }
 
 // 3. event listeners
@@ -136,11 +164,12 @@ viewStart.addEventListener("click", function (e) {
 
 viewGame.addEventListener("click", function (e) {
     if (e.target.classList.contains("btn-fighter")) {
-        takeTurn(e.target.value);
+        let p1chosenFighter = fighters.find(elem => elem.value === e.target.value);
+        takeTurn(p1chosenFighter);
         renderEndRound();
         setTimeout(() => {
             renderGame();
-        }, 3500);
+        }, 2500);
     }
 });
 

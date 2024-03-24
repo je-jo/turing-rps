@@ -73,22 +73,32 @@ textarea:not([rows]) {
 
 /* end andy bell's reset*/
 
+:root {
+  --color-bg: white;
+  --color: black;
+  --color-accent: tomato;
+}
+
 body {
     min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto 2fr 1fr auto;
+    grid-template-rows: auto 1fr auto auto;
     grid-template-areas: 
     "header header"
     "main main"
     "side1 side2"
     "footer footer";
     margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+    background-color: var(--color-bg);
+    color: var(--color);
 }
 
 @media screen and (min-width: 720px) {
     body {
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: 1fr 4fr 1fr;
         grid-template-rows: auto 1fr auto;
         grid-template-areas: 
         "side1 header side2"
@@ -99,29 +109,130 @@ body {
 
 header {
     grid-area: header;
-    background-color: tomato;
+    padding: 3rem 0;
 }
 
 main {
     grid-area: main;
-    background-color: lightgreen;
+    margin: 0 auto;
+}
+
+aside {
+  display: grid;
+  align-content: start;
+  padding: 2rem 1rem;
 }
 
 aside.player1 {
     grid-area: side1;
-    background-color: lightskyblue;
 }
 
 aside.player2 {
     grid-area: side2;
-    background-color: gold;
 }
 
 footer {
     grid-area: footer;
-    background-color: hotpink;
 }
 
 .hidden {
   display: none;
+}
+
+.container-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+ul.rules {
+  list-style: none;
+  font-size: 0.75rem;
+  padding: 0;
+}
+
+h2 {
+  padding: 2rem 0 3rem;
+}
+
+p {
+  margin-top: 0.5rem;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+.box-fighter {
+  width: 100px;
+  height: 100px;
+  /* border: 6px solid lightgoldenrodyellow; */
+  background-size: cover;
+  border-radius: 4px;
+}
+
+.btn-fighter:nth-child(1) {
+  background-image: url("assets/happy-rocks.png");
+}
+
+.btn-fighter:nth-child(2) {
+  background-image: url("assets/happy-paper.png");
+}
+
+.btn-fighter:nth-child(3) {
+  background-image: url("assets/happy-scissors.png");
+}
+
+.btn-fighter-diff:nth-child(1) {
+  background-image: url("assets/lizard.png");
+}
+
+.btn-fighter-diff:nth-child(2) {
+  background-image: url("assets/happy-alien.png");
+}
+
+@media screen and (min-width: 720px) {
+  .box-fighter {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .box-fighter {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-type,
+.btn-back {
+  color: var(--color);
+  background-color: var(--color-bg);
+  border: 1px solid currentColor;
+}
+
+.btn-type:hover,
+.btn-back:hover {
+  color: var(--color-bg);
+  background-color: var(--color);
+  /* border: 1px solid currentColor; */
+}
+
+.btn-type {
+  padding: 1.5rem;
+}
+
+.btn-back {
+  padding: 1rem;
+  margin-top: 3rem;
 }
