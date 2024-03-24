@@ -15,29 +15,36 @@
     <main>
         <section class="view-start">
             <h2>Choose your game!</h2>
-            <button class="btn-type" value="classic">Classic</button>
-            <ul class="rules">
-                <li>Rock > Scissors</li>
-                <li>Paper > Rock</li>
-                <li>Scissors > Paper</li>
-            </ul>
-            <button class="btn-type" value="difficult">Difficult</button>
-            <ul class="rules">
-                <li>Rock > Scissors & Lizard</li>
-                <li>Paper > Rock & Alien</li>
-                <li>Scissors > Paper & Lizard</li>
-                <li>Lizard > Paper & Alien</li>
-                <li>Alien > Scissors & Rock</li>
-            </ul>
+            <div class="container-flex">
+                <div>
+                    <button class="btn-type" value="classic">✂ Classic</button>
+                    <ul class="rules">
+                        <li>Rock > Scissors</li>
+                        <li>Paper > Rock</li>
+                        <li>Scissors > Paper</li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="btn-type" value="difficult">👽 Difficult</button>
+                    <ul class="rules">
+                        <li>Rock > Scissors & Lizard</li>
+                        <li>Paper > Rock & Alien</li>
+                        <li>Scissors > Paper & Lizard</li>
+                        <li>Lizard > Paper & Alien</li>
+                        <li>Alien > Scissors & Rock</li>
+                    </ul>
+                </div>
+            </div>
+
         </section>
         <section class="view-game">
             <h2>Choose your fighter!</h2>
-            <div class="container-fighter">
+            <div class="container-flex">
                 <button class="box-fighter btn-fighter" value="rock"></button>
                 <button class="box-fighter btn-fighter" value="paper"></button>
                 <button class="box-fighter btn-fighter" value="scissors"></button>
             </div>
-            <div class="container-fighter">
+            <div class="container-flex">
                 <button class="box-fighter btn-fighter btn-fighter-diff" value="lizard"></button>
                 <button class="box-fighter btn-fighter btn-fighter-diff" value="alien"></button>
             </div>
@@ -45,7 +52,7 @@
         </section>
         <section class="view-end-round">
             <h2 class="end-round-header"></h2>
-            <div class="container-fighter">
+            <div class="container-flex">
                 <div class="box-fighter player-1-chosen-fighter"></div>
                 <div class="box-fighter player-2-chosen-fighter"></div>
             </div>
@@ -53,13 +60,13 @@
     </main>
     <aside class="player1">
         <p>👱‍♂️</p>
-        <p>Human</p>
+        <h3>Human</h3>
         <p>Wins: <span class="p1wins">0</span></p>
         <button class="btn-back hidden">Change game?</button>
     </aside>
     <aside class="player2">
         <p>💻</p>
-        <p>Computer</p>
+        <h3>Computer</h3>
         <p>Wins: <span class="p2wins">0</span></p>
     </aside>
     <footer>

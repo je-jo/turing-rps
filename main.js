@@ -45,7 +45,6 @@ function getRandomIndex(max) {
 }
 
 function getRandomFighter() {
-
     if (game.gameType === "classic") {
         return fighters[getRandomIndex(3)];
     } else if (game.gameType === "difficult") {
@@ -81,10 +80,10 @@ function checkForWin(p1fighter, p2fighter) {
         (p1fighter === "alien" && p2fighter === "scissors") ||
         (p1fighter === "alien" && p2fighter === "rock")) {
         game.player1.wins += 1;
-        game.currentMessage = `${game.player1.name} wins this round!`
+        game.currentMessage = `${game.player1.token} ${game.player1.name} wins this round!`
     } else {
         game.player2.wins += 1;
-        game.currentMessage = `${game.player2.name} wins this round!`
+        game.currentMessage = `${game.player2.token} ${game.player2.name} wins this round!`
     }
 }
 
@@ -140,16 +139,18 @@ function renderEndRound() {
     p1chosenFighter.style.backgroundImage = `url(${game.player1.currentFighter.imgSrc})`;
     endRoundHeader.textContent = "...";
     p2chosenFighter.style.backgroundImage = "none";
-    p1wins.textContent = "";
-    p2wins.textContent = "";
+    p1wins.textContent = "...";
+    p2wins.textContent = "...";
     show(viewEndRound);
+    hide(btnBack);
+    setTimeout(() => {
+        p2chosenFighter.style.backgroundImage = `url(${game.player2.currentFighter.imgSrc})`;
+    }, 200)
     setTimeout(() => {
         endRoundHeader.textContent = game.currentMessage;
-        p2chosenFighter.style.backgroundImage = `url(${game.player2.currentFighter.imgSrc})`;
         p1wins.textContent = game.player1.wins;
         p2wins.textContent = game.player2.wins;
-    }, 300);
-    hide(btnBack);
+    }, 600);
 }
 
 // 3. event listeners
