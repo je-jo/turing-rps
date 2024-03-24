@@ -84,11 +84,13 @@ body {
     "side1 side2"
     "footer footer";
     margin: 0;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 @media screen and (min-width: 720px) {
     body {
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: 120px 1fr 120px;
         grid-template-rows: auto 1fr auto;
         grid-template-areas: 
         "side1 header side2"
@@ -99,29 +101,109 @@ body {
 
 header {
     grid-area: header;
-    background-color: tomato;
+    padding: 3rem 0;
 }
 
 main {
     grid-area: main;
-    background-color: lightgreen;
+    margin: 0 auto;
 }
 
 aside.player1 {
     grid-area: side1;
-    background-color: lightskyblue;
 }
 
 aside.player2 {
     grid-area: side2;
-    background-color: gold;
 }
 
 footer {
     grid-area: footer;
-    background-color: hotpink;
 }
 
 .hidden {
   display: none;
+}
+
+h2 {
+  padding: 1rem 0;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+button.btn-type {
+  padding: 1.5rem;
+}
+
+button.btn-back {
+  padding: 1rem;
+}
+
+.rules {
+  list-style: none;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+p {
+  margin-top: 0.5rem;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+.container-fighter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.box-fighter {
+  width: 100px;
+  height: 100px;
+  border: 0;
+  background-size: cover;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.btn-fighter:nth-child(1) {
+  background-image: url("assets/happy-rocks.png");
+}
+
+.btn-fighter:nth-child(2) {
+  background-image: url("assets/happy-paper.png");
+}
+
+.btn-fighter:nth-child(3) {
+  background-image: url("assets/happy-scissors.png");
+}
+
+.btn-fighter-diff:nth-child(1) {
+  background-image: url("assets/lizard.png");
+}
+
+.btn-fighter-diff:nth-child(2) {
+  background-image: url("assets/happy-alien.png");
+}
+
+@media screen and (min-width: 720px) {
+  .box-fighter {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .box-fighter {
+    width: 200px;
+    height: 200px;
+  }
 }
