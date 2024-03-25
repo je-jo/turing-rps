@@ -56,7 +56,6 @@ function takeTurn(chosenFighter) {
     game.player1.currentFighter = chosenFighter;
     game.player2.currentFighter = getRandomFighter();
     checkForDraw(game.player1.currentFighter.value, game.player2.currentFighter.value);
-    console.table(game)
 }
 
 function checkForDraw(p1fighter, p2fighter) {

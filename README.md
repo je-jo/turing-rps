@@ -21,11 +21,11 @@ This is a learning project from Turing School Module 1. The spec can be found [h
 
 ### Required Features:
 
-- [ ] Both players’ wins should be displayed.
-- [ ] Both players’ selected fighter icon should be displayed each round.
-- [ ] Winner (or Draw) should be announced each round.
-- [ ] A timeout is used after a completed round to reset the board.
-- [ ] This game is played by one user against a computer. The computer player should be another player object with the name of ‘computer’ and have the ability to make a random choice.
+- [x] Both players’ wins should be displayed.
+- [x] Both players’ selected fighter icon should be displayed each round.
+- [x] Winner (or Draw) should be announced each round.
+- [x] A timeout is used after a completed round to reset the board.
+- [x] This game is played by one user against a computer. The computer player should be another player object with the name of ‘computer’ and have the ability to make a random choice.
 - [x] You’ll need to make two versions of Rock, Paper, Scissors - “classic” and some variation. The variation should include more than 3 options.
 
 
