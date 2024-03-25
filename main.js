@@ -56,7 +56,6 @@ function takeTurn(chosenFighter) {
     game.player1.currentFighter = chosenFighter;
     game.player2.currentFighter = getRandomFighter();
     checkForDraw(game.player1.currentFighter.value, game.player2.currentFighter.value);
-    console.table(game)
 }
 
 function checkForDraw(p1fighter, p2fighter) {
@@ -91,6 +90,7 @@ function checkForWin(p1fighter, p2fighter) {
 
 // 1. variables
 
+var header = document.querySelector(".header");
 var viewStart = document.querySelector(".view-start");
 var viewGame = document.querySelector(".view-game");
 var viewEndRound = document.querySelector(".view-end-round");
@@ -115,6 +115,7 @@ function show(elem) {
 }
 
 function renderStart() {
+    show(header);
     show(viewStart);
     hide(viewGame);
     hide(viewEndRound);
@@ -128,6 +129,7 @@ function renderGame() {
     if (game.gameType === "difficult") {
         btnsDifficult.forEach(btn => show(btn));
     }
+    hide(header);
     hide(viewStart);
     show(viewGame);
     hide(viewEndRound);
@@ -143,14 +145,14 @@ function renderEndRound() {
     p2wins.textContent = "...";
     show(viewEndRound);
     hide(btnBack);
-    setTimeout(() => {
+    // setTimeout(() => {
         p2chosenFighter.style.backgroundImage = `url(${game.player2.currentFighter.imgSrc})`;
-    }, 200)
-    setTimeout(() => {
+    // }, 200)
+    // setTimeout(() => {
         endRoundHeader.textContent = game.currentMessage;
         p1wins.textContent = game.player1.wins;
         p2wins.textContent = game.player2.wins;
-    }, 600);
+    // }, 600);
 }
 
 // 3. event listeners
