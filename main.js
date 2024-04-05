@@ -112,6 +112,7 @@ var p2chosenFighter = document.querySelector(".player-2-chosen-fighter");
 var endRoundHeader = document.querySelector(".end-round-header");
 var p1wins = document.querySelector(".p1wins");
 var p2wins = document.querySelector(".p2wins");
+var results = document.querySelectorAll(".result");
 
 // 2. functions
 
@@ -141,6 +142,7 @@ function renderGame() {
         btnsDifficult.forEach(btn => show(btn));
     }
     hide(header);
+    results.forEach(result => result.classList.remove("trans"));
     hide(viewStart);
     show(viewGame);
     hide(viewEndRound);
@@ -155,6 +157,10 @@ function renderEndRound() {
     p1wins.textContent = "...";
     p2wins.textContent = "...";
     show(viewEndRound);
+    setTimeout(() => {
+        results.forEach(result => result.classList.add("trans"));
+    }, 1)
+
     hide(btnBack);
     // setTimeout(() => {
     p2chosenFighter.style.backgroundImage = game.player2.currentFighter.imgSrc;
