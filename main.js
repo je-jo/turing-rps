@@ -167,8 +167,10 @@ function renderEndRound() {
     // }, 200)
     // setTimeout(() => {
     endRoundHeader.textContent = game.currentMessage;
-    p1wins.textContent = game.player1.wins;
-    p2wins.textContent = game.player2.wins;
+    results[0].addEventListener("transitionend", function() {
+        p1wins.textContent = game.player1.wins;
+        p2wins.textContent = game.player2.wins;
+    });
     // }, 600);
 }
 
@@ -183,7 +185,7 @@ viewGame.addEventListener("click", function (e) {
         renderEndRound();
         setTimeout(() => {
             renderGame();
-        }, 2500);
+        }, 2850);
     }
 });
 
@@ -202,7 +204,7 @@ window.addEventListener("load", function () {
         game = JSON.parse(localStorage.getItem("savedGame"))
     }
     renderStart();
-})
+});
 
 
 

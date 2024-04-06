@@ -286,10 +286,10 @@ button.box-fighter:hover {
 /* transitions */
 
 .result {
-  transform: scale(0);
-  transition: all 0.5s ease;
+  transform: scaleX(0);
+  transition: all 0.6s ease;
 }
 
 .result.trans {
-  transform: scale(1);
+  transform: scaleX(1);
 }
