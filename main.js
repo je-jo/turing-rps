@@ -112,6 +112,7 @@ var p2chosenFighter = document.querySelector(".player-2-chosen-fighter");
 var endRoundHeader = document.querySelector(".end-round-header");
 var p1wins = document.querySelector(".p1wins");
 var p2wins = document.querySelector(".p2wins");
+var results = document.querySelectorAll(".result");
 
 // 2. functions
 
@@ -141,6 +142,7 @@ function renderGame() {
         btnsDifficult.forEach(btn => show(btn));
     }
     hide(header);
+    results.forEach(result => result.classList.remove("trans"));
     hide(viewStart);
     show(viewGame);
     hide(viewEndRound);
@@ -155,14 +157,20 @@ function renderEndRound() {
     p1wins.textContent = "...";
     p2wins.textContent = "...";
     show(viewEndRound);
+    setTimeout(() => {
+        results.forEach(result => result.classList.add("trans"));
+    }, 1)
+
     hide(btnBack);
     // setTimeout(() => {
     p2chosenFighter.style.backgroundImage = game.player2.currentFighter.imgSrc;
     // }, 200)
     // setTimeout(() => {
     endRoundHeader.textContent = game.currentMessage;
-    p1wins.textContent = game.player1.wins;
-    p2wins.textContent = game.player2.wins;
+    results[0].addEventListener("transitionend", function() {
+        p1wins.textContent = game.player1.wins;
+        p2wins.textContent = game.player2.wins;
+    });
     // }, 600);
 }
 
@@ -177,7 +185,7 @@ viewGame.addEventListener("click", function (e) {
         renderEndRound();
         setTimeout(() => {
             renderGame();
-        }, 2500);
+        }, 2850);
     }
 });
 
@@ -196,7 +204,7 @@ window.addEventListener("load", function () {
         game = JSON.parse(localStorage.getItem("savedGame"))
     }
     renderStart();
-})
+});
 
 
 
