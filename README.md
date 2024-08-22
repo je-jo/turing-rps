@@ -8,7 +8,7 @@ This is a learning project from Turing School Module 1. The spec can be found [h
 
 ### Live Page
 
-[Rock Paper Scissors]()
+[Rock Paper Scissors](https://je-jo.github.io/turing-rps/)
 
 ### Preview of App:
 
